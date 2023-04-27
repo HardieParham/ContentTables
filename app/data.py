@@ -5,7 +5,6 @@ data = {
 
 
 
-
 char_to_replace = {
     '_': ' ',
     '/': ' ',

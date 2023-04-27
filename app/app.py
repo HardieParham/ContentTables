@@ -4,8 +4,8 @@ import os
 # External Imports
 
 # Local Imports
-from modules.excel import *
-from modules.translate import *
+from app.modules.excel import *
+from app.modules.translate import *
 
 
 
