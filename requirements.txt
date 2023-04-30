@@ -14,7 +14,6 @@ itsdangerous==2.0.1
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 openpyxl==3.0.10
-pip==23.0.1
 pycparser==2.21
 pyOpenSSL==20.0.1
 PySocks==1.7.1

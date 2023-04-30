@@ -10,6 +10,36 @@
 #     app.run(debug=True)
 
 
+"""
+PLAN
+
+Take template excel file
+
+for items in a folder, add to file
+    also, translate item too
+
+update generic items in file (photos, misc info)
+
+
+
+
+Detailed plan:
+
+
+open template file
+
+save as new
+
+set input folder as current working directory
+
+os walk thru the folder
+
+"""
+
+
+
+
+
 import time
 import re
 import openpyxl
