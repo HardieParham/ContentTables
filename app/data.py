@@ -1,6 +1,6 @@
 data = {
-    'source language': 'de',
-    'destination language': 'en',
+    'src': 'de',  # Source Language
+    'dest': 'en',  # Destination Language
 }
 
 

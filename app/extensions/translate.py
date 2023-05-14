@@ -16,7 +16,7 @@ NOTE:
 Google Translate is blocked by TME.
 """
 
-class Text():
+class Translator():
     def __init__(self, src, dest):
         self.trans = googletrans.Translator()
         self.src = src
