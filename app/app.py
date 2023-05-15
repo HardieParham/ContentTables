@@ -7,8 +7,9 @@ import os
 from .models.content import Content
 from .models.file import ContentFile
 from .models.folder import ContentFolder
+from .extensions.formatting import format_folder
 from .extensions.excel import *
-from .extensions.translate import Translator
+from .extensions.translate import translate
 from .data import char_to_replace, data
 
 
@@ -18,50 +19,39 @@ class App():
     def __init__(self) -> None:
         self.name = 'blank.xlsx'
         self.input = 'input'
-        self.translator = Translator(src=data['src'], dest=data['dest'])
+        # self.translator = Translator()
         self.content_list = []
+
+
+
+    def main_loop(self) -> None:
+        """
+        TODO:
+        
+        Best practice would be to make "main_loop" all one loop, rather than 3 individual loops.
+        If free time is available, fix this.
+        """
+        self.read_loop()
+        self.translate_loop()
+        self.excel_loop()
+
 
     def read_loop(self) -> None:
         for root, _, files in os.walk(self.input, topdown=True, followlinks=False):
-            current_dir, level = self.format_folder(root)
+            current_dir, level = format_folder(root)
             self.content_list.append(ContentFolder(name=current_dir, level=level))
 
             for file in files:
                 self.content_list.append(ContentFile(name=file))
 
-        print(self.content_list)
+
+    def translate_loop(self) -> None:
+        for item in self.content_list:
+            item.newname = translate(text=item.oldname)
 
 
-
-    def main_loop(self) -> None:
-        for root, dirs, files in os.walk(self.input, topdown=True, followlinks=False):
-            print('hi')
-
-        # for thing in things:
-        #     read(thing)
-        #     translate(thing)
-        #     xlprint(thing)
-
-
-    def format_folder(self, root: str) -> tuple:
-        """
-        Function for formating folder paths, returning the name and level of the lowest folder 
-        
-        :param root: path string returned from the os.walk function
-        :type root: string
-
-        :rtype: tuple
-        """
-        folder_path = root.split('\\')
-        current_dir = folder_path[-1]
-        level = len(folder_path)
-        return (current_dir, level)
-
-
-
-    def read_content():
+    def excel_loop(self):
         pass
-
 
 
 # Read Loop

@@ -14,12 +14,46 @@ from openpyxl.utils import get_column_letter
 
 
 
+class Workbook():
+    def __init__(self, template_name, project_name, item_list):
+        self.name = template_name
+        self.new_name = f'{project_name}'
+        self.wb = openpyxl.load_workbook(f"templates/{self.name}")
+        self.item_list = item_list
+
+    def load_presets():
+        pass
+
+    def print_row(item):
+        pass
+
+    def save_wb(self):
+        self.wb.save(f'output/{self.new_name}')
+
+    def excel_loop(self):
+        self.load_presets()
+        for item in self.item_list:
+            self.print_row(item)
+        self.save_wb()
+
+
+
+
+
+
+
+
+
+
+
+
 """
 Base Class to work with Excel Documents
+
 Methods to Load and save documents
 Methods to loop thru entire word documents to update Text Class
 """
-class Workbook():
+class OLD_Workbook():
     def __init__(self, file):
         self.name = file
         self.new_name = 'ENG_' + file
@@ -154,49 +188,3 @@ class Workbook():
         self.log_change(content=f'Completed translating {sheet}')      
         print(f'Completed translating {self.name}')
 
-
-
-
-"""
-General Class for looping thru a folder of Excel documents
-"""
-class App():
-    def __init__(self):
-        self.input_path = './input'
-        self.filename_list = self.get_files()
-
-    def get_files(self):
-        filelist = []
-        dirpath = os.listdir(self.input_path)
-        for file in dirpath:
-
-            # Checks if file is valid (aka, not a subfolder)
-            if os.path.isfile(os.path.join(self.input_path, file)):
-                filelist.append(file)
-
-        print(filelist)
-        return filelist
-
-
-    def delete_old_log(self):
-        if os.path.exists('data/log.txt'):
-            os.remove('data/log.txt')
-        else:
-            print('Log file not found')
-
-
-    def main_loop(self):
-        self.delete_old_log()
-        for file in self.filename_list:
-            print(f'\n Loading {file} \n')
-            excel = Workbook(file)
-            excel.loop_thru_document()
-            excel.save_wb()
-
-
-
-
-# Start main loop when file is run
-if __name__ == "__main__":
-    app = App()
-    app.main_loop()
