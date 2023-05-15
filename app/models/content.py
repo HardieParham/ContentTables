@@ -5,3 +5,6 @@ class Content():
         self.newname = ''
         self.excelrow = 0
         Content.content_list.append(self.oldname)
+
+    def __repr__(self):
+        return f'{self.oldname}'

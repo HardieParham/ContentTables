@@ -19,19 +19,51 @@ class App():
         self.name = 'blank.xlsx'
         self.input = 'input'
         self.translator = Translator(src=data['src'], dest=data['dest'])
+        self.content_list = []
 
-    def loop(self) -> None:
-        for root, dirs, files in os.walk(self.input, topdown=True, followlinks=False):
-            path_list = root.split('\\')
-            current_dir = path_list[-1]
-
-            level = len(path_list)
-            print(f'Root: {current_dir}, lvl: {level}')
-
-            folder = ContentFolder(name=current_dir, level=level)
-            #Content.content_list.append(f'{len(path_list)} - {current_dir}')
+    def read_loop(self) -> None:
+        for root, _, files in os.walk(self.input, topdown=True, followlinks=False):
+            current_dir, level = self.format_folder(root)
+            self.content_list.append(ContentFolder(name=current_dir, level=level))
 
             for file in files:
-                print(file)
-                new = ContentFile(name=file)
-                print(new.filetype)
+                self.content_list.append(ContentFile(name=file))
+
+        print(self.content_list)
+
+
+
+    def main_loop(self) -> None:
+        for root, dirs, files in os.walk(self.input, topdown=True, followlinks=False):
+            print('hi')
+
+        # for thing in things:
+        #     read(thing)
+        #     translate(thing)
+        #     xlprint(thing)
+
+
+    def format_folder(self, root: str) -> tuple:
+        """
+        Function for formating folder paths, returning the name and level of the lowest folder 
+        
+        :param root: path string returned from the os.walk function
+        :type root: string
+
+        :rtype: tuple
+        """
+        folder_path = root.split('\\')
+        current_dir = folder_path[-1]
+        level = len(folder_path)
+        return (current_dir, level)
+
+
+
+    def read_content():
+        pass
+
+
+
+# Read Loop
+# Translate Loop
+# Print to XL Loop
