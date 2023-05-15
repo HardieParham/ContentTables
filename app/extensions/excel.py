@@ -17,28 +17,40 @@ from openpyxl.utils import get_column_letter
 class Workbook():
     def __init__(self, template_name, project_name, item_list):
         self.name = template_name
-        self.new_name = f'{project_name}'
+        self.project_name = project_name
+        self.new_name = f'{project_name}.xlsx'
         self.wb = openpyxl.load_workbook(f"templates/{self.name}")
         self.item_list = item_list
-
-    def load_presets():
-        pass
-
-    def print_row(item):
-        pass
+        self.ws = self.wb.worksheets[0]
 
     def save_wb(self):
-        self.wb.save(f'output/{self.new_name}')
+        self.wb.save(f'input/{self.new_name}')
+        print('saved')
 
     def excel_loop(self):
-        self.load_presets()
-        for item in self.item_list:
-            self.print_row(item)
+        self.save_wb()
+        for i, item in enumerate(self.item_list):
+            print(f'{i}: {item}')
+            adj_row = i + 1
+            text = self.ws['B' + str(28)]
+            # i - row number
+            # col A - file type
+            # col B - name and link
+            # col H - new_name and link
+            # col N - number of pages (1 for now)
+            self.ws['A' + str(adj_row)].value = item.filetype
+            self.ws['B' + str(adj_row)].value = item.oldname
+            self.ws['H' + str(adj_row)].value = item.newname
+            self.ws['N' + str(adj_row)].value = '1'
+        text = self.ws['B' + str(28)]
         self.save_wb()
 
 
 
 
+# Cell Styling
+# Pass thru cell number and Content
+# 
 
 
 
