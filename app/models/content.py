@@ -1,4 +1,14 @@
+import os
+
+from openpyxl.styles import PatternFill, Color, Border, cell_style, Alignment, Side, Font
+
 from ..extensions.translate import translate
+
+COLORS = {
+    'white': Color(rgb='00FFFFFF'),
+    'red': Color(rgb='00FF0000'),
+    'black': Color(rgb='00000000'),
+}
 
 class Content():
     content_list = []
