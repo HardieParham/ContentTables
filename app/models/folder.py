@@ -13,11 +13,11 @@ class ContentFolder(Content):
         self.border = self.set_borders()
         self.font = self.set_font()
         self.fill = PatternFill(patternType='solid', bgColor=COLORS['red'], fgColor=COLORS['red'])
-        self.alignment = Alignment(horizontal='center', vertical='center')
+        self.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 
     def set_borders(self):
-        vertical_style = Side(style='thick', color=COLORS['black'])
+        vertical_style = Side(style='thin', color=COLORS['black'])
         border = Border(left=vertical_style, right=vertical_style, top=vertical_style)
         return border
 

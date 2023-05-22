@@ -20,7 +20,7 @@ class ContentFile(Content):
         self.border = self.set_borders()
         self.font = self.set_font()
         self.fill = PatternFill(patternType='solid', bgColor=COLORS['white'], fgColor=COLORS['white'])
-        self.alignment = Alignment(horizontal='center', vertical='center')
+        self.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 
     def set_borders(self):

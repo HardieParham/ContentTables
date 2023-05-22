@@ -12,7 +12,7 @@ from openpyxl.utils import get_column_letter
 
 
 # Local Imports
-
+from ..models.blank import ContentBlank
 
 
 class Workbook():
@@ -49,8 +49,25 @@ class Workbook():
         self.save_wb()
 
 
-    def apply_folder(self, item):
+    def apply_blank(self):
+        item = ContentBlank()
+        self.ws['A' + str(self.row_counter)].border = item.border
+        self.ws['A' + str(self.row_counter)].fill = item.fill
+
+        self.ws['B' + str(self.row_counter)].border = item.border
+        self.ws['B' + str(self.row_counter)].fill = item.fill
+
+        self.ws['C' + str(self.row_counter)].border = item.border
+        self.ws['C' + str(self.row_counter)].fill = item.fill
+
+        self.ws['D' + str(self.row_counter)].border = item.border
+        self.ws['D' + str(self.row_counter)].fill = item.fill
         self.row_counter += 1
+
+
+
+    def apply_folder(self, item):
+        self.apply_blank()
         print(f'{self.row_counter}: {item.oldname}')
 
         self.ws['A' + str(self.row_counter)].value = item.filetype
