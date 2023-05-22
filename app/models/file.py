@@ -16,7 +16,7 @@ class ContentFile(Content):
         super().__init__(self.filename)
         self.dir = dir
         self.pages = 1
-        self.path = str('\\' + path)
+        self.path = str(path)
         self.border = self.set_borders()
         self.font = self.set_font()
         self.fill = PatternFill(patternType='solid', bgColor=COLORS['white'], fgColor=COLORS['white'])
@@ -31,7 +31,7 @@ class ContentFile(Content):
 
     def set_font(self):
         name='Arial'
-        size = 12
+        size = 11
         font_style = Font(name=name, color=COLORS['black'], size=size)
         return font_style
 

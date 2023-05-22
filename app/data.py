@@ -1,5 +1,5 @@
 data = {
-    'src': 'pl',  # Source Language
+    'src': 'fr',  # Source Language
     'dest': 'en',  # Destination Language
 }
 
