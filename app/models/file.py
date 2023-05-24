@@ -1,19 +1,14 @@
-# Standard Imports
 import os
 
-# External Imports
 from openpyxl.styles import PatternFill, Color, Border, cell_style, Alignment, Side, Font
 
-# Local Imports
 from .content import Content, COLORS
 
 
-
-
 class ContentFile(Content):
-    def __init__(self, name, dir, path):
+    def __init__(self, name: str, dir: str, path: str, src: str, dest: str) -> None:
         self.filename, self.filetype = os.path.splitext(name)
-        super().__init__(self.filename)
+        super().__init__(self.filename, src, dest)
         self.dir = dir
         self.pages = 1
         self.path = str(path)
@@ -23,13 +18,13 @@ class ContentFile(Content):
         self.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 
-    def set_borders(self):
+    def set_borders(self) -> object:
         vertical_style = Side(style='thin', color=COLORS['black'])
         border = Border(left=vertical_style, right=vertical_style)
         return border
 
 
-    def set_font(self):
+    def set_font(self) -> object:
         name='Arial'
         size = 11
         font_style = Font(name=name, color=COLORS['black'], size=size)

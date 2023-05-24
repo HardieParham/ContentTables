@@ -1,13 +1,11 @@
-import os
-
-from openpyxl.styles import PatternFill, Color, Border, cell_style, Alignment, Side, Font
+from openpyxl.styles import PatternFill, Border, Alignment, Side, Font
 
 from .content import Content, COLORS
 
 
 class ContentFolder(Content):
-    def __init__(self, name, level, path):
-        super().__init__(name)
+    def __init__(self, name: str, level: int, path: str, src: str, dest: str) -> None:
+        super().__init__(name, src, dest)
         self.level = level
         self.filetype = 'Folder'
         self.path = str(path)
@@ -17,13 +15,13 @@ class ContentFolder(Content):
         self.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 
-    def set_borders(self):
+    def set_borders(self) -> object:
         vertical_style = Side(style='thin', color=COLORS['black'])
         border = Border(left=vertical_style, right=vertical_style, top=vertical_style)
         return border
 
 
-    def set_font(self):
+    def set_font(self) -> object:
         name='Arial'
         size = 12
         font_style = Font(name=name, color=COLORS['white'], size=size)
@@ -33,10 +31,11 @@ class ContentFolder(Content):
 
 
 class ContentSubFolder(Content):
-    def __init__(self, name, level, path):
-        super().__init__(name)
+    def __init__(self, name: str, level: int, path: str, src: str, dest: str) -> None:
+        super().__init__(name, src, dest)
         self.level = level
-        self.filetype = int(level-1)*'S' + ' Folder'
+        self.adj_level = int(level-2)
+        self.filetype = self.adj_level*'S' + ' Folder'
         self.path = str(path)
         self.border = self.set_borders()
         self.font = self.set_font()
@@ -44,14 +43,20 @@ class ContentSubFolder(Content):
         self.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
 
 
-    def set_borders(self):
+    def set_borders(self) -> object:
         vertical_style = Side(style='thin', color=COLORS['black'])
         border = Border(left=vertical_style, right=vertical_style, top=vertical_style)
         return border
 
 
-    def set_font(self):
+    def set_font(self) -> object:
         name='Arial'
         size = 12
-        font_style = Font(name=name, color=COLORS['red'], size=size)
+        if self.adj_level % 3 == 0:
+            font_style = Font(name=name, color=COLORS['red'], size=size)
+        elif self.adj_level % 3 == 1:
+            font_style = Font(name=name, color=COLORS['blue'], size=size)
+        elif self.adj_level % 3 == 2:
+            font_style = Font(name=name, color=COLORS['brown'], size=size)
+        # font_style = Font(name=name, color=COLORS['red'], size=size)
         return font_style
