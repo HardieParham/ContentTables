@@ -53,7 +53,7 @@ class App():
 
             for file in files:
                 rel_file = os.path.join(rel_dir, file)
-                row = ContentFile(name=file, dir=current_dir, path=rel_file, src=self.source_lang, dest=self.dest_lang)
+                row = ContentFile(name=file, dir=current_dir, path=rel_file, src=self.source_lang, dest=self.dest_lang, root=self.project_name)
                 self.template.apply_file(row)
                 
         self.template.apply_blank(bottom=True) #Add a blank row at end of file

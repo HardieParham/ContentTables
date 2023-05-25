@@ -58,7 +58,7 @@ class Workbook():
         self.ws['C' + str(self.row_counter)].fill = item.fill
         self.ws['C' + str(self.row_counter)].font = item.font
 
-        self.ws['D' + str(self.row_counter)].value = 1
+        self.ws['D' + str(self.row_counter)].value = None
         self.ws['D' + str(self.row_counter)].alignment = item.alignment
         self.ws['D' + str(self.row_counter)].border = item.border
         self.ws['D' + str(self.row_counter)].fill = item.fill
@@ -87,7 +87,7 @@ class Workbook():
         self.ws['C' + str(self.row_counter)].fill = item.fill
         self.ws['C' + str(self.row_counter)].font = item.font
 
-        self.ws['D' + str(self.row_counter)].value = 1
+        self.ws['D' + str(self.row_counter)].value = item.pages
         self.ws['D' + str(self.row_counter)].alignment = item.alignment
         self.ws['D' + str(self.row_counter)].border = item.border
         self.ws['D' + str(self.row_counter)].fill = item.fill
