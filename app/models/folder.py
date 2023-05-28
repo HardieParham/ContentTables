@@ -58,5 +58,4 @@ class ContentSubFolder(Content):
             font_style = Font(name=name, color=COLORS['blue'], size=size)
         elif self.adj_level % 3 == 2:
             font_style = Font(name=name, color=COLORS['brown'], size=size)
-        # font_style = Font(name=name, color=COLORS['red'], size=size)
         return font_style
