@@ -1,6 +1,7 @@
 import logging
 
-from googletrans import Translator
+# from googletrans import Translator
+from translate import Translator
 
 char_to_replace = {
     '_': ' ',
@@ -32,10 +33,10 @@ def translate(text: str, src: str, dest:str) -> str:
             new_text = text.replace(key, value)
 
 
-        translator = Translator()
-        translation = translator.translate(text=new_text, dest=dest, src=src)
+        translator = Translator(from_lang=src, to_lang=dest) #, provider='microsoft', secret_access_key=[])
+        translation = translator.translate(text) #=new_text, dest=dest, src=src)
 
-        return translation.text
+        return translation
     
     except:
         logging.warning(f'Translation failed for {text}')
